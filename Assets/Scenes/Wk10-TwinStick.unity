@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMove
   speed: 3
-  rotationSpeed: 0
+  rotationSpeed: -60
 --- !u!114 &978364848
 MonoBehaviour:
   m_ObjectHideFlags: 0
