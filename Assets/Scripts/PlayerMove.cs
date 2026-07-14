@@ -4,8 +4,9 @@ using UnityEngine.InputSystem;
 public class PlayerMove : MonoBehaviour
 {
     public float speed;
+    public float rotationSpeed;
     private Vector2 movementDirection = Vector2.zero;
-
+    private Vector3 lookAngle = Vector3.zero;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,6 +18,7 @@ public class PlayerMove : MonoBehaviour
     {
         // cast Vector2 to Vector3 so it can be assigned to position
         transform.position += (Vector3)movementDirection * speed * Time.deltaTime;
+        transform.eulerAngles += lookAngle * rotationSpeed * Time.deltaTime;
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -35,5 +37,11 @@ public class PlayerMove : MonoBehaviour
         {
             Debug.Log("Attack! " + context.phase);
         }
+    }
+
+    public void OnLook(InputAction.CallbackContext context)
+    { 
+        // rotation go wheeeeeeeeeeee
+        lookAngle.z = context.ReadValue<Vector2>().x;
     }
 }
