@@ -52,6 +52,7 @@ public class PlayerMove : MonoBehaviour
     public void OnLook(InputAction.CallbackContext context)
     {
         // rotation go wheeeeeeeeeeee
+        // set lookAngle Z to input's X value to get rotation
         lookAngle.z = context.ReadValue<Vector2>().x;
         
         // turret logic
