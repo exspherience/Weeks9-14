@@ -188,7 +188,6 @@ MonoBehaviour:
   isPlayerLeft: 1
   startPosition: -5
   attacking: 0
-  manager: {fileID: 181416939}
 --- !u!212 &181416937
 SpriteRenderer:
   serializedVersion: 2
@@ -279,8 +278,6 @@ MonoBehaviour:
   player2Button: {fileID: 1969598256}
   player1: {fileID: 181416936}
   player2: {fileID: 2056355148}
-  player1Turn: 1
-  player2Turn: 0
 --- !u!1 &626878410
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,7 +1131,6 @@ MonoBehaviour:
   isPlayerLeft: 0
   startPosition: 4
   attacking: 0
-  manager: {fileID: 0}
 --- !u!1 &2083622924
 GameObject:
   m_ObjectHideFlags: 0

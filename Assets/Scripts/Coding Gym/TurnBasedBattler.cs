@@ -18,34 +18,23 @@ public class TurnBasedBattler : MonoBehaviour
     public AnimationCurve attackCurve;
     public float attackDuration = 2;
     Vector3 playerTransform;
-    public bool isPlayerLeft = false;
     public float startPosition;
-    bool attacking;
-    public Button attackButton;
+    public bool attacking;
+    public BattlerManager manager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (isPlayerLeft)
-        {
-            playerTransform = new Vector3(-5, 0, 0);
-        }
-        else
-        {
-            playerTransform = new Vector3(4, 0, 0);
-        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!attacking && attackCoroutine != null)
-        {
-            StopCoroutine(attackCoroutine);
-        }
-        if (!attacking) attackButton.interactable = true;
+
     }
 
+    // play attack animation with coroutine
     private IEnumerator Attack()
     {
         float t = 0;
@@ -53,6 +42,8 @@ public class TurnBasedBattler : MonoBehaviour
         while (t < attackDuration)
         {
             t += Time.deltaTime;
+            // use animation curve
+            // P1 has curve that goes up like ^ while P2 goes down like v
             playerTransform.x = startPosition + attackCurve.Evaluate(t / attackDuration);// * Vector3.one;
             transform.position = playerTransform;
             yield return null;
@@ -62,13 +53,10 @@ public class TurnBasedBattler : MonoBehaviour
 
     }
 
+    // start coroutine, toggle attacking variable to true
     public void StartAttack()
     {
-        if (!attacking)
-        {
-            attackCoroutine = StartCoroutine(Attack());
-            attacking = true;
-            attackButton.interactable = false;
-        }
+        attackCoroutine = StartCoroutine(Attack());
+        attacking = true;
     }
 }
