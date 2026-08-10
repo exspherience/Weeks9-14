@@ -1,14 +1,21 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     public float speed;
+    public float defaultSpeed = 5;
+    public float boostedSpeed = 2;
     public float rotationSpeed;
     private Vector2 movementDirection = Vector2.zero;
 
     public float minY = -7;
     public float maxY = 7;
+
+    public float speedBoostDuration = 3;
+
+    Coroutine boostCoroutine;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,5 +38,32 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         movementDirection = context.ReadValue<Vector2>();
+    }
+
+    //////////////////////////////////
+    /// Carrot and Hurdles Methods ///
+    //////////////////////////////////
+    public void SpeedUp()
+    {
+        boostCoroutine = StartCoroutine(SpeedBoost());
+        speed += boostedSpeed;
+    }
+
+    // coroutine to keep speed for as long as duration is set to
+    IEnumerator SpeedBoost()
+    {
+        float t = 0;
+        while (t < speedBoostDuration)
+        {
+            t += Time.deltaTime;
+
+            yield return null;
+        }
+
+        // reset speed after duration exceeded
+        if(t >= speedBoostDuration)
+        {
+            speed = defaultSpeed;
+        }
     }
 }
