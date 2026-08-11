@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
             // apply new position to transform position
             transform.position = playerPos;
 
-            if(spinOutCoroutine != null)
+            if (spinOutCoroutine != null)
             {
                 StopCoroutine(spinOutCoroutine);
             }
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
     //////////////////////
     /// Carrot Methods ///
     //////////////////////
-    
+
     // start coroutine and increase speed
     public void SpeedUp()
     {
@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // reset speed after duration exceeded
-        if(t >= speedBoostDuration)
+        if (t >= speedBoostDuration)
         {
             speed = defaultSpeed;
         }
