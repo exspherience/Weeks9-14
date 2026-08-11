@@ -4,6 +4,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public SpriteRenderer horseRenderer;
+    public Sprite runningHorse;
+    public Sprite normalHorse;
+
     public float speed;
     public float defaultSpeed = 5;
     public float boostedSpeed = 2;
@@ -18,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public float spinOutDuration = 3;
 
     public bool spinningOut = false;
+    public bool isRunning = false;
 
     Coroutine boostCoroutine;
     Coroutine spinOutCoroutine;
@@ -46,6 +51,15 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (isRunning)
+        {
+            horseRenderer.sprite = runningHorse;
+        }
+        else
+        {
+            horseRenderer.sprite = normalHorse;
+        }
+
         transform.eulerAngles = spinRotation;
     }
 
@@ -70,16 +84,17 @@ public class PlayerController : MonoBehaviour
     IEnumerator SpeedBoost()
     {
         float t = 0;
+        isRunning = true;
         while (t < speedBoostDuration)
         {
             t += Time.deltaTime;
-
             yield return null;
         }
 
         // reset speed after duration exceeded
         if (t >= speedBoostDuration)
         {
+            isRunning = false;
             speed = defaultSpeed;
         }
     }
@@ -98,21 +113,22 @@ public class PlayerController : MonoBehaviour
         spinningOut = true;
 
         float t = 0;
+
         while (t < spinOutDuration)
         {
             t += Time.deltaTime;
             speed = 0;
             spinRotation.z += rotationSpeed;
+
             yield return null;
+            
+            // reset speed after duration exceeded
+            if (t >= spinOutDuration)
+            {
+                speed = defaultSpeed;
+                spinRotation.z = 0;
+                spinningOut = false;
+            }
         }
-
-        // reset speed after duration exceeded
-        if (t >= spinOutDuration)
-        {
-            speed = defaultSpeed;
-            spinRotation.z = 0;
-            spinningOut = false;
-        }
-
     }
 }

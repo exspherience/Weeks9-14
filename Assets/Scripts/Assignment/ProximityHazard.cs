@@ -23,11 +23,8 @@ public class ProximityHazard : MonoBehaviour
         {
             onTouch.Invoke();
             currentlyOnObject = true;
-
-            if(isCarrot)
-            {
-                obstacle.SetActive(false);
-            }
+            obstacle.SetActive(false);
+            
         }
         else if(!playerRenderer.bounds.Contains(transform.position) && currentlyOnObject)
         {
