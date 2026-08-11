@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+// Horse Neigh from DRAGON STUDIO @ Pixabay
 public class PlayerController : MonoBehaviour
 {
     public SpriteRenderer horseRenderer;
