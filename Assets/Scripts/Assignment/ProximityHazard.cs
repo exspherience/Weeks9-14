@@ -8,7 +8,6 @@ public class ProximityHazard : MonoBehaviour
     public PlayerController player;
     public UnityEvent onTouch;
 
-    public bool isCarrot;
     public bool isFinishLine;
 
     public bool currentlyOnObject = false;
