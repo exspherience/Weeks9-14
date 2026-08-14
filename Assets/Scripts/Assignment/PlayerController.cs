@@ -74,9 +74,12 @@ public class PlayerController : MonoBehaviour
 
     public void OnNeigh(InputAction.CallbackContext context)
     {
-        if(!horseNeigh.isPlaying)
+        if (context.started)
         {
-            horseNeigh.Play();
+            if (!horseNeigh.isPlaying)
+            {
+                horseNeigh.Play();
+            }
         }
     }
 
