@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 movementDirection = Vector2.zero;
     private Vector3 spinRotation = Vector3.zero;
 
+    // min and max Y for clamping so horse cannot go out of bounds
     public float minY = -7;
     public float maxY = 7;
 
@@ -33,7 +34,7 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+       
     }
 
     // Update is called once per frame
@@ -48,12 +49,14 @@ public class PlayerController : MonoBehaviour
             // apply new position to transform position
             transform.position = playerPos;
 
+            // ends spin out coroutine
             if (spinOutCoroutine != null)
             {
                 StopCoroutine(spinOutCoroutine);
             }
         }
 
+        // displays correct horse sprite for speed up 
         if (isRunning)
         {
             horseRenderer.sprite = runningHorse;
@@ -63,6 +66,7 @@ public class PlayerController : MonoBehaviour
             horseRenderer.sprite = normalHorse;
         }
 
+        // rotates horse when spinning out
         transform.eulerAngles = spinRotation;
     }
 
@@ -72,10 +76,12 @@ public class PlayerController : MonoBehaviour
         movementDirection = context.ReadValue<Vector2>();
     }
 
+    // horse neighs when button pressed
     public void OnNeigh(InputAction.CallbackContext context)
     {
         if (context.started)
         {
+            // check if sound is not already playing
             if (!horseNeigh.isPlaying)
             {
                 horseNeigh.Play();
@@ -116,6 +122,8 @@ public class PlayerController : MonoBehaviour
     //////////////////////
     /// Hurdle Methods ///
     //////////////////////
+    
+    // begins spin out coroutine
     public void StopMovement()
     {
         spinOutCoroutine = StartCoroutine(SpinOut());
@@ -146,6 +154,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // ends race after touching finish line
     public void EndRace()
     {
         raceTimer.EndTimer();

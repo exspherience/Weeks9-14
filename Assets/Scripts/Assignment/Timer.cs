@@ -13,6 +13,7 @@ public class Timer : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // begins timer and disables win text
         StartTimer();
         winText.enabled = false;
     }
@@ -20,14 +21,17 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // updates timer text, only shows 2 decimal points
         timerText.text = timer.ToString("#.00");
     }
 
+    // begins coroutine for timer
     public void StartTimer()
     {
         timerCoroutine = StartCoroutine(RunTimer());
     }
 
+    // ends timer and displays win message
     public void EndTimer()
     {
         if(timerCoroutine != null)
@@ -37,8 +41,10 @@ public class Timer : MonoBehaviour
 
         winText.text = ("You Win!\nFinal Time: " + timer.ToString("#.00"));
         winText.enabled = true;
+        isRacing = false;
     }
 
+    // coroutine for timer
     IEnumerator RunTimer()
     {
         timer = 0;

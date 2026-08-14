@@ -17,6 +17,8 @@ public class CameraFollow : MonoBehaviour
         
     }
 
+    // camera corotuine
+    // follows horse throughout whole game
     IEnumerator FollowHorse()
     {
         while (true)

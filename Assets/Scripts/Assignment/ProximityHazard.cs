@@ -1,4 +1,3 @@
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -22,16 +21,20 @@ public class ProximityHazard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // checks if player is within carrot or hurdle
+        // invokes event and disables object
         if(playerRenderer.bounds.Contains(transform.position) && !currentlyOnObject && !isFinishLine)
         {
             onTouch.Invoke();
             currentlyOnObject = true;
             obstacle.SetActive(false);
         }
+        // check if player is near finish line before invoking event
         else if(Vector2.Distance(transform.position, playerRenderer.transform.position) < 1f && isFinishLine)
         {
             onTouch.Invoke();
         }
+        // player is not on object if outside of object bounds
         else if (!playerRenderer.bounds.Contains(transform.position) && currentlyOnObject)
         {
             currentlyOnObject = false;
