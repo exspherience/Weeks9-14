@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public Sprite runningHorse;
     public Sprite normalHorse;
     public AudioSource horseNeigh;
+    public Timer raceTimer;
 
     public float speed;
     public float defaultSpeed = 5;
@@ -139,6 +140,17 @@ public class PlayerController : MonoBehaviour
                 spinRotation.z = 0;
                 spinningOut = false;
             }
+        }
+    }
+
+    public void EndRace()
+    {
+        raceTimer.EndTimer();
+        speed = 0;
+        
+        if(boostCoroutine != null)
+        {
+            StopCoroutine(boostCoroutine);
         }
     }
 }
