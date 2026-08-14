@@ -122,5 +122,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  text: {fileID: 202765742855844704, guid: fb0862f08bf33a04aaac5a6bc7b54aa0, type: 3}
   isCarrot: 1
   currentlyOnObject: 0

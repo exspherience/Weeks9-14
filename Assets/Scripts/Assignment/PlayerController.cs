@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer horseRenderer;
     public Sprite runningHorse;
     public Sprite normalHorse;
+    public AudioSource horseNeigh;
 
     public float speed;
     public float defaultSpeed = 5;
@@ -68,6 +69,14 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         movementDirection = context.ReadValue<Vector2>();
+    }
+
+    public void OnNeigh(InputAction.CallbackContext context)
+    {
+        if(!horseNeigh.isPlaying)
+        {
+            horseNeigh.Play();
+        }
     }
 
     //////////////////////
