@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 // Horse Neigh from DRAGON STUDIO @ Pixabay
+
+// Horse moves with WASD/Arrow Keys/Analog Stick
+// Horse neighs with jump button (Space Bar or Button South)
 public class PlayerController : MonoBehaviour
 {
     public SpriteRenderer horseRenderer;
